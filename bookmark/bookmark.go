@@ -85,3 +85,13 @@ func (bm *BookmarkManager) Add(name, path string) error {
 func (bm *BookmarkManager) List() []Bookmark {
 	return bm.bookmarks
 }
+
+func (bm *BookmarkManager) Get(query string) (*Bookmark, error) {
+	for _, bookmark := range bm.bookmarks {
+		if bookmark.Name == query {
+			return &bookmark, nil
+		}
+	}
+
+	return nil, fmt.Errorf("%s bookmark does not exist", query)
+}

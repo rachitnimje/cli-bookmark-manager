@@ -1,6 +1,3 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -50,5 +47,4 @@ func runList(cmd *cobra.Command, args []string) {
 	for _, b := range bookmarks {
 		fmt.Printf("Name: %v Path: %v \n", b.Name, b.Path)
 	}
-
 }
