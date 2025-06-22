@@ -95,3 +95,24 @@ func (bm *BookmarkManager) Get(query string) (*Bookmark, error) {
 
 	return nil, fmt.Errorf("%s bookmark does not exist", query)
 }
+
+func (bm *BookmarkManager) Delete(name string) error {
+	bookmarks := bm.List()
+	newBookmarks := make([]Bookmark, 0, len(bookmarks))
+	found := false
+
+	for _, b := range bookmarks {
+		if b.Name == name {
+			found = true
+		} else {
+			newBookmarks = append(newBookmarks, b)
+		}
+	}
+
+	if !found {
+		return fmt.Errorf("bookmark %s not found", name)
+	}
+
+	bookmarks = newBookmarks
+	return bm.Save()
+}
