@@ -97,11 +97,10 @@ func (bm *BookmarkManager) Get(query string) (*Bookmark, error) {
 }
 
 func (bm *BookmarkManager) Delete(name string) error {
-	bookmarks := bm.List()
-	newBookmarks := make([]Bookmark, 0, len(bookmarks))
+	newBookmarks := make([]Bookmark, 0, len(bm.bookmarks))
 	found := false
 
-	for _, b := range bookmarks {
+	for _, b := range bm.bookmarks {
 		if b.Name == name {
 			found = true
 		} else {
@@ -113,6 +112,6 @@ func (bm *BookmarkManager) Delete(name string) error {
 		return fmt.Errorf("bookmark %s not found", name)
 	}
 
-	bookmarks = newBookmarks
+	bm.bookmarks = newBookmarks
 	return bm.Save()
 }
