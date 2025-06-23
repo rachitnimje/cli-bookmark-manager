@@ -38,7 +38,7 @@ func runList(cmd *cobra.Command, args []string) {
 	// create a new BookmarkManager
 	bm, err := bookmark.NewBookmarkManager()
 	if err != nil {
-		fmt.Printf("Error: %w\n", err)
+		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
 
